@@ -1,0 +1,31 @@
+<footer id="page-footer" class="navbar navbar-light justify-content-between flex-row-reverse">
+  <div class="nav">
+    <small class="nav-item" ng-show="!app.es404">
+      <span class="nav-link text-info" title="{{app.conectado?'Conectado':'Conectando...'}}">
+        <i class="fas fa-spinner fa-spin" aria-hidden ng-show="!app.conectado"></i>
+        <i class="" ng-class="{'fas fa-plug':!app.conectado, 'fa fa-bolt':app.conectado }"></i>
+      </span>
+    </small>
+    <small class="nav-item">
+      <a href="/nosotros" class="nav-link text-info">
+        <span class="d-none d-sm-inline">
+          <%-app.name%> <%-app.version%>
+        </span>
+      </a>
+    </small>
+    <small class="nav-item"><a class="nav-link text-info" href="/account/tos"><span class="d-none d-sm-inline">Términos de uso</span></a></small>
+    <% if(me) { %>
+    <small class="nav-item">
+      <a class="nav-link text-info" href="/logout">
+        <span class="d-none d-sm-inline" title="<%-me.perfil.descripcion%>">
+          Salir ( <i class="fas fa-user" aria-hidden></i> <%-me.fullName%>
+          <% if(me.empresa && me.empresa.razonSocial) { %>
+          - <i class="fas fa-building" aria-hidden></i> <%-me.empresa.razonSocial%>
+          <%}%>
+          )
+          </span>
+        </a>
+      </small>
+    <% } %>
+  </div>
+</footer>

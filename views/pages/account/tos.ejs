@@ -1,0 +1,29 @@
+<div id="tos" ng-controller="tosController" class="ng-cloak" ng-init="init()" ng-cloak >
+
+  <div class="container">
+    <titulo-pagina>Términos de uso del servicio</titulo-pagina>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p><b>Este es un sistema EN PRODUCCIÓN.</b></p>
+        <p>Toda la actividad realizada con su usuario es almacenada para efectos de monitoreo y supervisión.</p>
+        <p>Todos los documentos emitidos por esta plataforma son REALES y los folios generados SON válidos y están ligados a su cuenta de usuario.</p>
+        <p>Hacer mal uso de los documentos emitidos por esta plataforma es un delito.</p>
+        <p>Al hacer uso de este sistema usted acepta estas condiciones.</p>
+        <div ng-show="syncing">
+          <i class="fas fa-spinner fa-spin fa-2x" aria-hidden></i>
+        </div>
+      </div>
+    </div>
+    <div class="row" ng-if="!me.tos">
+      <div class="col-md-6 text-center">
+        <button type="button" class="btn btn-warning" ng-click="noaceptar()" ng-disabled="syncing"><i class="fas fa-times" aria-hidden></i> No Acepto</button>
+      </div>
+      <div class="col-md-6 text-center">
+        <button type="button" class="btn btn-primary" ng-click="aceptar()" ng-disabled="syncing"><i class="fas fa-check" aria-hidden></i> Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<%- /* Exponer datos de variables del servidor como window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

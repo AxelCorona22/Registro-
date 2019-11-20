@@ -1,0 +1,159 @@
+{
+  //   ╔═╗╔═╗╦  ╦╔╗╔╔╦╗┬─┐┌─┐
+  //   ║╣ ╚═╗║  ║║║║ ║ ├┬┘│
+  //  o╚═╝╚═╝╩═╝╩╝╚╝ ╩ ┴└─└─┘
+  // A set of basic code conventions (similar to a .jshintrc file) designed to
+  // encourage quality and consistency across your Sails app's code base.
+  // These rules are checked against automatically any time you run `npm test`.
+  //
+  // > An additional eslintrc override file is included in the `assets/` folder
+  // > right out of the box.  This is specifically to allow for variations in acceptable
+  // > global variables between front-end JavaScript code designed to run in the browser
+  // > vs. backend code designed to run in a Node.js/Sails process.
+  //
+  // > Note: If you're using mocha, you'll want to add an extra override file to your
+  // > `test/` folder so that eslint will tolerate mocha-specific globals like `before`
+  // > and `describe`.
+  // Designed for ESLint v4.
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // For more information about any of the rules below, check out the relevant
+  // reference page on eslint.org.  For example, to get details on "no-sequences",
+  // you would visit `http://eslint.org/docs/rules/no-sequences`.  If you're unsure
+  // or could use some advice, come by https://sailsjs.com/support.
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  "env": {
+    "node": true
+  },
+
+  "parserOptions": {
+    "ecmaVersion": 8
+  },
+
+  "globals": {
+    // If "no-undef" is enabled below, be sure to list all global variables that
+    // are used in this app's backend code (including the globalIds of models):
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    "Proyectos": true,
+    "Conceptos": true,
+    "Insumosprototipo": true,
+    "Prototipos": true,
+    "Etapasprototipo": true,
+    "Empresas": true,
+    "Movimientosalmacenes": true,
+    "Detallemovimientosalmacenes": true,
+    "Usuarios": true,
+    "slackService": true,
+    "Reportesfotograficos": true,
+    "Unidadesconstruccion": true,
+    "Promise": true,
+    "Permisos": true,
+    "Logsistema": true,
+    "sentryService": true,
+    "redisConfigService": true,
+    "Perfiles": true,
+    "Personas": true,
+    "sails": true,
+    "jwtService": true,
+    "Configuracion": true,
+    "flashService": true,
+    "_": true,
+    "async": true,
+    "generaCurp": true,
+    "pdfMake": true,
+    // Models
+
+    "notificaService": true,
+
+    // …and any others.
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  },
+
+  "rules": {
+    "array-bracket-newline":        ["error"],
+    "array-bracket-spacing":        ["error", "always"],
+    "array-element-newline":        ["error"],
+    "arrow-spacing":                ["error"],
+    "block-spacing": ["error"],
+    "comma-spacing": ["error"],
+    "computed-property-spacing": ["error"],
+    "func-call-spacing": ["error"],
+    "function-paren-newline": ["error"],
+    "generator-star-spacing": ["error"],
+    "implicit-arrow-linebreak": ["error"],
+    "key-spacing": ["error"],
+    "keyword-spacing": ["error", {"before":true, "after":true}],
+    "no-irregular-whitespace": ["error"],
+    "no-multi-spaces": ["error"],
+    "no-regex-spaces": ["error"],
+    "no-spaced-func": ["error"],
+    "no-whitespace-before-property": ["error"],
+    "nonblock-statement-body-position": ["error"],
+
+    "object-curly-newline": ["error"],
+
+    "object-curly-spacing": ["error","always"],
+    "object-property-newline": ["error"],
+    "one-var-declaration-per-line": ["error"],
+    "operator-linebreak": ["error"],
+    "padding-line-between-statements": ["error"],
+    "rest-spread-spacing": ["error"],
+    "space-before-blocks": ["error"],
+    "space-before-function-paren": ["error"],
+    "space-in-parens": ["error","always"],
+    "space-infix-ops": ["error"],
+    "space-unary-ops": ["error"],
+    "spaced-comment": ["error"],
+    "switch-colon-spacing": ["error"],
+    "template-tag-spacing": ["error"],
+    "no-multiple-empty-lines": ["error", {"max":2, "maxEOF":1, "maxBOF":0}],
+    //----------------------
+    "callback-return":              ["error", ["done", "proceed", "next", "onwards", "callback", "cb"]],
+    "camelcase":                    ["warn", {"properties":"always"}],
+    "comma-style":                  ["warn", "last"],
+    "comma-dangle": ["error", {
+        "arrays": "always",
+        "objects": "never",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+    }],
+    "curly":                        ["error"],
+    "eqeqeq":                       ["error", "always"],
+    "eol-last":                     ["warn"],
+    "handle-callback-err":          ["error"],
+    "indent":                       ["warn", 2, {
+      "SwitchCase": 1,
+      "MemberExpression": "off",
+      "FunctionDeclaration": {"body":1, "parameters":"off"},
+      "FunctionExpression": {"body":1, "parameters":"off"},
+      "CallExpression": {"arguments":"off"},
+      "ArrayExpression": 1,
+      "ObjectExpression": 1,
+      "ignoredNodes": ["ConditionalExpression"]
+    }],
+    "linebreak-style":              ["error", "unix"],
+    "no-dupe-keys":                 ["error"],
+    "no-duplicate-case":            ["error"],
+    "no-extra-semi":                ["warn"],
+    "no-labels":                    ["error"],
+    "no-mixed-spaces-and-tabs":     [2, "smart-tabs"],
+    "no-redeclare":                 ["warn"],
+    "no-return-assign":             ["error", "always"],
+    "no-sequences":                 ["error"],
+    "no-trailing-spaces":           ["warn"],
+    "no-undef":                     ["error"],
+    "no-unexpected-multiline":      ["warn"],
+    "no-unreachable":               ["warn"],
+    "no-unused-vars":               ["warn", {"caughtErrors":"all", "caughtErrorsIgnorePattern": "^unused($|[A-Z].*$)", "argsIgnorePattern": "^unused($|[A-Z].*$)", "varsIgnorePattern": "^unused($|[A-Z].*$)" }],
+    "no-use-before-define":         ["error", {"functions":false}],
+    "one-var":                      ["warn", "never"],
+    "prefer-arrow-callback":        ["warn", {"allowNamedFunctions":true}],
+    "quotes":                       ["warn", "single", {"avoidEscape":false, "allowTemplateLiterals":true}],
+    "semi":                         ["error", "always"],
+    "semi-spacing":                 ["warn", {"before":false, "after":true}],
+    "semi-style":                   ["warn", "last"],
+    "max-lines":                    ["error", {"max": 400, "skipComments": true, "skipBlankLines": true}],
+    "max-nested-callbacks":         ["error", 4]
+  }
+
+}

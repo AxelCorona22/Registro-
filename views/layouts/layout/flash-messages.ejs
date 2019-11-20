@@ -1,0 +1,44 @@
+<% if (typeof flashMessages !== "undefined" && sails.config.opciones.flashType==='alert'){%>
+<div class="container">
+  <% if (typeof flashMessages !== "undefined"  && flashMessages['error'] && flashMessages['error'].length > 0) {%>
+  <div class="alert alert-danger mt-2 flash-alert alert-dismissible fade show" role="alert">
+    <%flashMessages['error'].forEach((message) => { %>
+    <p><%=message%></p>
+    <% });%>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% } %>
+  <% if (typeof flashMessages !== "undefined"  && flashMessages['warning'] && flashMessages['warning'].length > 0) {%>
+  <div class="alert alert-warning mt-2 flash-alert alert-dismissible fade show" role="alert">
+    <%flashMessages['warning'].forEach((message) => { %>
+    <p><%=message%></p>
+    <% });%>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% } %>
+  <% if (typeof flashMessages !== "undefined"  && flashMessages['info'] && flashMessages['info'].length > 0) {%>
+  <div class="alert alert-info mt-2 flash-alert alert-dismissible fade show" role="alert">
+    <%flashMessages['info'].forEach((message) => { %>
+    <p><%=message%></p>
+    <% });%>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% } %>
+  <% if (typeof flashMessages !== "undefined"  && flashMessages['success'] && flashMessages['success'].length > 0) {%>
+  <div class="alert alert-success mt-2 flash-alert alert-dismissible fade show" role="alert">
+    <%flashMessages['success'].forEach((message) => { %>
+    <p><%=message%></p>
+    <% });%>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% } %>
+</div>
+<% } %>

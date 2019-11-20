@@ -1,0 +1,126 @@
+<div id="configuracion" ng-controller="configuracionController" ng-init="init()" ng-cloak>
+  <div class="container">
+    <titulo-pagina>Configuración</titulo-pagina>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h4>{{empresa.razonSocial}}</h4>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <h5 class="card-header">Logo de la Empresa</h5>
+          <img ng-src="{{empresa.rutaImage}}?data={{random}}" class="card-img-top" alt="Picture" ng-if="empresa.rutaImage">
+          <img src="/images/demoEmpresa.jpeg" class="card-img-top" alt="Picture" ng-if="!empresa.rutaImage">
+          <div class="card-body">
+            <label for="exampleFormControlFile1" class="btn btn-info btn-sm btn-block text-center">
+              <i class="fa fa-camera"></i> Seleccionar <span ng-if="!empresa.rutaImage">Nueva</span> Foto
+            </label>
+            <input type="file" class="form-control-file" ng-hide="true" file-model="fotoperfil" id="exampleFormControlFile1"/>
+            <button type="button" ng-show="empresa.rutaImage" class="btn btn-danger btn-block btn-sm" name="button" ng-click="removerFoto()">
+              <i class="fa fa-trash"></i> Quitar Foto
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <form>
+          <div class="form-group row">
+            <label for="internalEmail" class="text-right col-sm-4 col-form-label">Email Interno</label>
+            <div class="col-sm-8">
+              <input type="email" class="form-control" ng-model="empresa.configuracion.internalEmailAddress" id="internalEmail" placeholder="mail@dominio.com">
+              <p class="text-secondary small">Email desde donde se envian los correos (Ver configuración SMTP).</p>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="emailFromName" class="text-right col-sm-4 col-form-label">Nombre en Correo</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" ng-model="empresa.configuracion.emailFromName" id="emailFromName" placeholder="Emails de misitio.com">
+              <p class="text-secondary small">Nombre que se usa para enviar los correos.</p>
+            </div>
+          </div>
+
+          <fieldset class="form-group">
+            <div class="row">
+              <legend class="col-form-label text-right col-sm-4 pt-0">Mensajes Flash</legend>
+              <div class="col-sm-8">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" ng-model="empresa.configuracion.flashType" name="gridRadios" id="gridRadios1" value="alertify" checked>
+                  <label class="form-check-label" for="gridRadios1">
+                    Alertify
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" ng-model="empresa.configuracion.flashType" name="gridRadios" id="gridRadios2" value="alert">
+                  <label class="form-check-label" for="gridRadios2">
+                    Bootstrap Alert
+                  </label>
+                </div>
+                <p class="text-secondary small">Tipo de notificación usada por el sistema.</p>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="form-group row">
+            <div class="text-right col-sm-4">Validar Email</div>
+            <div class="col-sm-8">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck1" ng-model="empresa.configuracion.verifyEmailAddresses">
+                <label class="form-check-label small" for="gridCheck1">
+                  Requiere configuración GMAIL.
+                </label>
+              </div>
+              <p class="text-secondary small">Enviar un Email de validación para las cuentas.</p>
+            </div>
+          </div>
+          <div class="" ng-show="empresa.configuracion.verifyEmailAddresses">
+            <div class="row">
+              <div class="col-sm-4">
+              </div>
+              <div class="col-sm-8">
+                <h4>Configuración GMAIL</h4>
+                <p class="text-secondary small">El sistema tiene la capacidad de enviar notificaciones por Email cuando la configuación GMAIL está disponible.</p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="gmailUser" class="text-right col-sm-4 col-form-label">Usuario GMAIL</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" ng-model="empresa.configuracion.gmailUser" id="gmailUser" placeholder="usuario">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="gmailPassword" class="text-right col-sm-4 col-form-label">Contraseña GMAIL</label>
+              <div class="col-sm-8">
+                <input type="password" class="form-control" ng-model="empresa.configuracion.gmailPassword" id="gmailPassword" placeholder="••••••••">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="text-right col-sm-4">Invitar Multifactor</div>
+            <div class="col-sm-8">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck3" ng-model="empresa.configuracion.invitarMultiFactor">
+                <label class="form-check-label" for="gridCheck3">
+                  Muestra una invitación para activar Autenticación multifactor a las cuentas que no la tengan.
+                </label>
+              </div>
+              <p class="text-secondary small">Genera un texto en cada página avisando que la autenticación multifactor no se encuentra activa.</p>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-8">
+              <button type="submit" class="btn btn-primary" ng-click="guardar()">
+                <i class="fas fa-save" aria-hidden></i>
+                Guardar Opciones
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

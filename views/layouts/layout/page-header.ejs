@@ -1,0 +1,93 @@
+<header id="page-header" class="capitalize navbar navbar-expand-sm navbar-dark bg-dark flex-column flex-md-row justify-content-between">
+  <span id="tituloGeneral">
+
+  </span>
+
+  <div class="navbar-nav flex-row">
+  <!-- LOGGED-IN -->
+  <% if(me){ %>
+   <div class="nav-item d-none d-sm-block">
+     <a class="nav-link" href="/" title="Escritorio"><i class="fas fa-home" aria-hidden></i> Escritorio</a>
+   </div>
+  <!--
+    ███████ ██    ██ ██████  ███████ ██████
+    ██      ██    ██ ██   ██ ██      ██   ██
+    ███████ ██    ██ ██████  █████   ██████
+         ██ ██    ██ ██      ██      ██   ██
+    ███████  ██████  ██      ███████ ██   ██
+    -->
+    <%if(me.perfilName==='super'){%>
+      <div class="nav-item d-none d-sm-block">
+        <a class="nav-link" href="/admin/logsistema"><i class="fa fa-clipboard" aria-hidden></i> Logs del Sistema</a>
+      </div>
+      <div class="nav-item d-none d-sm-block">
+        <a class="nav-link" href="/admin/reqmon"><i class="fas fa-recycle" aria-hidden></i> Monitor de solicitudes</a>
+      </div>
+      <div class="nav-item d-none d-sm-block">
+        <a class="nav-link" href="/empresas"><i class="fas fa-building" aria-hidden></i> Empresas</a>
+      </div>
+      <div class="nav-item dropdown d-none d-sm-block">
+        <a class="nav-link dropdown-toggle" id="header-super-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-lock" aria-hidden></i> Super</a>
+        <div class="dropdown-menu account-menu" aria-labelledby="header-account-menu-link">
+          <%if(tienePermiso('ver_perfiles')){%>
+          <a class="dropdown-item" href="/admin/perfiles"><i class="fa fa-cogs" aria-hidden></i> Perfiles</a>
+          <%}%>
+          <%if(tienePermiso('ver_permisos')){%>
+          <a class="dropdown-item" href="/admin/permisos"><i class="fas fa-unlock-alt" aria-hidden></i> Permisos</a>
+          <%}%>
+        </div>
+      </div>
+    <%}%>
+    <%if(me.perfilName==='super'){%>
+      <div class="nav-item d-none d-sm-block">
+        <a class="nav-link" href="/admin/logsistema"><i class="fa fa-clipboard" aria-hidden></i> Logs del Sistema</a>
+      </div>
+      <div class="nav-item d-none d-sm-block">
+        <a class="nav-link" href="/admin/reqmon"><i class="fas fa-recycle" aria-hidden></i> Monitor de solicitudes</a>
+      </div>
+      <%if(tienePermiso('ver_perfiles')){%>
+      <a class="dropdown-item" href="/admin/perfiles"><i class="fa fa-cogs" aria-hidden></i> Perfiles</a>
+      <%}%>
+      <%if(tienePermiso('ver_permisos')){%>
+      <a class="dropdown-item" href="/admin/permisos"><i class="fas fa-unlock-alt" aria-hidden></i> Permisos</a>
+      <%}%>
+    <%}%>
+    <!--
+       █████  ██████  ███    ███ ██ ███    ██
+      ██   ██ ██   ██ ████  ████ ██ ████   ██
+      ███████ ██   ██ ██ ████ ██ ██ ██ ██  ██
+      ██   ██ ██   ██ ██  ██  ██ ██ ██  ██ ██
+      ██   ██ ██████  ██      ██ ██ ██   ████
+    -->
+    <%if(me.perfilName==='admin'){%>
+      <div class="nav-item dropdown d-none d-sm-block">
+        <a class="nav-link dropdown-toggle" id="header-admin-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-lock" aria-hidden></i> Administración</a>
+        <div class="dropdown-menu account-menu" aria-labelledby="header-account-menu-link">
+          <%if(tienePermiso('configuracion')){%>
+          <a class="dropdown-item" href="/admin/configuracion"><i class="fa fa-cogs" aria-hidden></i> Configuración</a>
+          <%}%>
+          <%if(tienePermiso('ver_usuarios')){%>
+          <a class="dropdown-item" href="/admin/usuarios"><i class="fa fa-users" aria-hidden></i> Usuarios</a>
+          <%}%>
+        </div>
+      </div>
+    <%}%>
+
+    <!-- Only in desktop nav -->
+    <div class="nav-item dropdown d-none d-sm-block">
+      <a class="nav-link dropdown-toggle" id="header-account-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Mi cuenta"><i class="fa fa-user-circle" aria-hidden></i></a>
+      <div class="dropdown-menu account-menu" aria-labelledby="header-account-menu-link">
+        <a class="dropdown-item" href="/account"><i class="fa fa-cog" aria-hidden></i> Preferencias</a>
+        <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt" aria-hidden></i> Salir</a>
+      </div>
+    </div>
+    <!-- Only in mobile nav -->
+    <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/account"><i class="fa fa-user-circle" aria-hidden></i> Mi cuenta</a>
+    <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/logout"><i class="fa fa-sign-out" aria-hidden></i> Salir</a>
+    <% } else { %>
+      <!-- LOGGED-OUT -->
+      <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/contacto"><i class="fas fa-envelope" aria-hidden></i> Contacto</a>
+      <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/login"><i class="fas fa-sign-in-alt" aria-hidden></i> Iniciar Sesión</a>
+    <% } %>
+  </div>
+</header>

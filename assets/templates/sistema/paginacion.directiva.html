@@ -1,0 +1,40 @@
+<div class="row" ng-show="sindatos">
+  <div class="col-md-12 text-center">
+    <span ng-show="sindatos"><h4>No existen registros</h4></span>
+  </div>
+</div>
+<div class="row" ng-show="!cargando">
+  <div class="col-3">
+    <span ng-hide="!paginacion.hasta">Mostrando {{paginacion.desde}} - {{paginacion.hasta}} de {{paginacion.total}} registros</span>
+  </div>
+  <div class="col-1"  ng-hide="!registros.length">
+    <select ng-if="paginacion.opcionCuantos.length>1" class="form-control" ng-model="paginacion.cuantos" ng-change="reloadCuantos()">
+      <option ng-repeat="op in paginacion.opcionCuantos" value="{{op}}">{{op}}</option>
+    </select>
+  </div>
+  <div class="col text-right">
+    <nav aria-label="Page navigation" ng-show="paginacion.total >= paginacion.cuantos">
+      <ul class="pagination">
+        <li class="page-item">
+          <a ng-disabled="paginacion.pag==1" class="page-link btn" aria-label="Anterior" ng-click="changePage('back')">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Anterior</span>
+          </a>
+        </li>
+        <li class="page-item" ng-show="down<paginacion.paginas && down!=1" ng-click="changePage('bpag')">
+          <a class="page-link">...</a>
+        </li>
+        <li class="page-item" ng-repeat="p in pagOfPag" ng-class="{'active':currentPage(p)}" ng-click="changePage(p)"><a class="page-link">{{p}}</a></li>
+        <li ng-show="up<paginacion.paginas" ng-click="changePage('npag')">
+          <a class="page-link">...</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link btn" ng-disabled="paginacion.pag==paginacion.paginas" aria-label="Siguiente" ng-click="changePage('next')">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Siguiente</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

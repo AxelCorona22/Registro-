@@ -1,0 +1,25 @@
+/**
+ * This file is for overriding some default bootstrap styles.
+ *
+ * > NOTE THAT THIS FILE AFFECTS GLOBAL STYLES.
+ */
+
+// lesshint-disable
+* {
+	box-sizing: border-box;
+}
+// lesshint-enable
+
+img {
+	display: block;
+}
+
+// Get rid of weird background on <a>s with button styles
+.btn, [type='button'] {
+	-webkit-appearance: none;
+}
+
+.bg-dark {
+	background-image: linear-gradient(#666, #888 50%, #666 0, #5c5c5c);
+	background-repeat: no-repeat;
+}

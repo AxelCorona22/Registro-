@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="angularjs-app">
+
+<head>
+  <title><%-app.name%> <% if(_environment==='development'){%><%-app.version%><%}%></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <%- include('layout/css-dependencies') %>
+</head>
+
+<body class="ng-cloak" ng-cloak>
+  <div id="page-wrap">
+    <%- include('layout/page-header') %>
+    <%- include('layout/email-change-msg') %>
+    <%- include('layout/multi-factor-invite') %>
+    <%- include('layout/flash-messages') %>
+    <%- body %>
+    <%- include('layout/page-footer') %>
+    <%- include('layout/print-modal') %>
+    <%- include('layout/page-loader') %>
+  </div>
+
+  <%- include('layout/js-manual-dependencies') %>
+  <%- include('layout/js-dependencies') %>
+</body>
+
+</html>

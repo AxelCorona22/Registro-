@@ -1,0 +1,83 @@
+<div id="logsistema" ng-controller="logsistemaController" class="ng-cloak" ng-init="init()" ng-cloak >
+
+  <!--
+  ██       ██████   ██████
+  ██      ██    ██ ██
+  ██      ██    ██ ██   ███
+  ██      ██    ██ ██    ██
+  ███████  ██████   ██████
+  -->
+
+  <div class="container-fluid">
+    <titulo-pagina>
+      <center><i class="fas fa-clipboard" aria-hidden></i> Logs del Sistema</center>
+    </titulo-pagina>
+    <div ui-grid="gridLog" ui-grid-pagination class="grid"></div>
+  </div>
+
+
+  <!--
+  ███    ███  ██████  ██████   █████  ██
+  ████  ████ ██    ██ ██   ██ ██   ██ ██
+  ██ ████ ██ ██    ██ ██   ██ ███████ ██
+  ██  ██  ██ ██    ██ ██   ██ ██   ██ ██
+  ██      ██  ██████  ██████  ██   ██ ███████
+  -->
+  <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-xs">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="modal-title col-12 text-center">
+            <h5>
+              <b>DATOS DEL LOG</b>
+              <button type="button" title="Cerrar Ventana" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </h5>
+          </span>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="input-group">
+                <span class="input-group-addon"><b>Usuario:</b> </span>
+              </div>
+              <pre class="form-group">{{ log.usuario| json }}</pre>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="input-group">
+                <span class="input-group-addon"><b>Navegador:</b> </span>
+              </div>
+              <pre class="form-group">{{ log.userAgent }}</pre>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="input-group">
+                <span class="input-group-addon"><b>Parámetros:</b> </span>
+              </div>
+              <pre class="form-group">{{ log.parameters | json }}</pre>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="input-group">
+                <span class="input-group-addon">Body: </span>
+              </div>
+              <pre class="form-group">{{ log.body | json }}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" name="button" class="btn btn-info" title="Abrir Trámite" ng-click="abrirTramite()"> <i class="fas fa-lock-open"></i> Abrir Trámite</button> -->
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar y Regresar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<%- /* Exponer datos de variables del servidor como window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

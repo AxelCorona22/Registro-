@@ -1,0 +1,39 @@
+<div id="reqmon" ng-controller="reqmonController" class="ng-cloak" ng-init="init()" ng-cloak>
+
+  <div class="container-fluid">
+    <titulo-pagina>Monitor de solicitudes</titulo-pagina>
+    <ul class="list-group">
+      <li class="list-group-item" ng-if="!reqs.length">
+        No hay solicitudes que mostrar, esperando...
+        <hr>
+        <span class="small">
+          Este monitor de solicitudes muestra todas y cada una de las solicitudes que recive el sistema en tiempo real.
+        </span>
+      </li>
+      <li class="list-group-item clickable" ng-repeat="req in reqs | orderBy: '-timestamp'" ng-class="{'list-group-item-dark':viendo==$index}" ng-click="viendo==$index?viendo=-1:viendo=$index">
+        <i class="fas" aria-hidden ng-class="{'fa-bolt':req.isSocket, 'fa-globe':!req.isSocket}"></i>
+        {{req.ip}}->[{{req.timestamp|fecha:"short+time"}}] -> {{req.method}} {{req.url}}
+        <i class="fas float-right" aria-hidden ng-class="{'fa-minus':viendo==$index, 'fa-plus':viendo!=$index}"></i>
+        <div ng-if="viendo==$index" class="small">
+          <hr>
+          <pre ng-show="req.userAgent"><b>User agent:</b>{{req.userAgent}}</pre>
+          <pre ng-show="req.userAgent"><b>Origin:</b> {{req.origin}}</pre>
+          <div class="row">
+            <div class="col-md-3">
+              <pre><b>Body:</b> {{req.body|json}}</pre>
+            </div>
+            <div class="col-md-3">
+              <pre><b>User:</b> {{req.me|json}}</pre>
+            </div>
+            <div class="col-md-6">
+              <pre><b>Headers:</b> {{req.headers|json}}</pre>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<%- /* Exponer datos de variables del servidor como window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

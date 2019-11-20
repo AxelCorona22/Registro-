@@ -1,0 +1,135 @@
+<div id="users" ng-controller="usuariosController" ng-cloak ng-init="init()">
+  <titulo-pagina>
+    <i class="fas fa-user"></i> Usuarios
+  </titulo-pagina>
+  <div class="container-fluid">
+    <div class="row separado">
+      <div class="col-3">
+        <div class="input-group mb-2.5">
+          <input type="text" class="form-control" ng-keyup="teclaBusqueda($event)" ng-model="searchGeneral" placeholder="Buscar por nombre">
+          <button type="button" name="button" ng-click="iniciarBusqueda()" title="Iniciar Busqueda" class="btn btn-primary btn-sm"> <i class="fas fa-search"></i></button>
+        </div>
+      </div>
+      <div class="col-2 offset-md-7">
+        <% if(me.perfilName==='super' || me.perfilName==='admin') {%>
+        <button type="button" title="Agregar usuario" class="btn btn-success btn-block btn-sm" ng-click="showUsuario()">
+          <i class="fa fa-plus" aria-hidden></i> Agregar Usuario
+        </button>
+        <%}%>
+      </div>
+    </div>
+    <table class="table table-striped">
+      <thead class="thead">
+        <tr>
+          <th>Email</th>
+          <th>Nombre</th>
+          <th>Perfil</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in usuarios">
+          <td>{{user.emailAddress}}</td>
+          <td>{{user.fullName}}</td>
+          <td>{{user.perfil.descripcion}}</td>
+          <td>
+            <button type="button" name="button" class="btn btn-primary btn-sm" ng-click="showUsuario(user)">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button type="button" name="button" class="btn btn-info btn-sm" ng-click="shownPermisos(user)">
+              <i class="fas fa-lock"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <span ng-show="cargandoDatos">
+          <i class="fas fa-spinner fa-spin fa-2x" aria-hidden></i> <br>
+          Cargando ....
+        </span>
+      </div>
+    </div>
+    <paginacion-directiva registros="usuarios"
+                          url="/api/v1/admin/usuarios/getall"
+                          search="searchGeneral"
+                          cargando="cargandoDatos"
+                          paginacion="paginacion"
+                          opcion-cuantos="10 15 20 50"
+                          pag-pag="10" refresh="refresh"
+                          datos-fecha="datosFecha"></paginacion-directiva>
+  </div>
+  <!--
+  ███    ███  ██████  ██████   █████  ██
+  ████  ████ ██    ██ ██   ██ ██   ██ ██
+  ██ ████ ██ ██    ██ ██   ██ ███████ ██
+  ██  ██  ██ ██    ██ ██   ██ ██   ██ ██
+  ██      ██  ██████  ██████  ██   ██ ███████
+  -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-xs">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><i class="fa fa-plus-circle"></i> Agregar usuario</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <form name="frmUsuario" class="was-validated">
+          <div class="modal-body">
+            <usuario-directiva user="user"></usuario-directiva>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal" title="Guardar" ng-disabled="!frmUsuario.$valid"
+          ng-click="guardarUsuario()"><i class="fa fa-save"></i> Guardar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar y Regresar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--
+██████  ███████ ██████  ███    ███ ██ ███████  ██████  ███████
+██   ██ ██      ██   ██ ████  ████ ██ ██      ██    ██ ██
+██████  █████   ██████  ██ ████ ██ ██ ███████ ██    ██ ███████
+██      ██      ██   ██ ██  ██  ██ ██      ██ ██    ██      ██
+██      ███████ ██   ██ ██      ██ ██ ███████  ██████  ███████
+-->
+<div class="modal fade" id="myModalPermisos" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Categorias de Permisos</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <modal-body>
+        <div class="row">
+          <div class="col-10 offset-1">
+            <div class="categoria_permiso" ng-repeat="cat in permisos">
+              <div class="titulo_categoria_permiso" ng-click="cat[0].open=!cat[0].open">
+                <i class="fa" ng-class="{'fa-folder':cat[0].open, 'fa-folder-open':!cat[0].open}"></i>
+                {{cat[0].categoria}}
+                <i class="fa" ng-class="{'fa-caret-right':cat[0].open, 'fa-caret-down':!cat[0].open}"></i>
+              </div>
+              <div ng-show="!cat[0].open">
+                <div class="lista_permiso" ng-repeat="permiso in cat">
+                  <div class="label_permiso" ng-click="permiso.aplicado=!permiso.aplicado">
+                    <i class="fa fa-file-o"></i>
+                    {{permiso.nombre}}
+                  </div>
+                  <input type="checkbox" ng-model="permiso.aplicado" ng-change="cambioPermiso(permiso.valor)" class="elcheck">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </modal-body>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar y Regresar</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- END -->
+</div>
+
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

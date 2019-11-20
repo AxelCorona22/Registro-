@@ -1,0 +1,80 @@
+  <div id="account-overview" class="container ng-cloak" ng-cloak ng-controller="accountOverviewController">
+    <titulo-pagina>
+      Mi cuenta
+    </titulo-pagina>
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <h4>Mi perfil</h4>
+      </div>
+      <div class="col-sm-6">
+        <span class="float-sm-right">
+          <a class="btn btn-sm btn-outline-info account-settings-button" href="/account/profile">Editar mi perfil</a>
+        </span>
+      </div>
+    </div>
+    <% if(me.empresa && me.empresa.id){%>
+    <div class="row">
+      <div class="col-3">Empresa</div>
+      <div class="col"><strong>
+        {{me.empresa.razonSocial}}</strong>
+      </div>
+    </div>
+    <%}%>
+    <% if(me.profilePicture){%>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col">
+        <div class="foto-perfil rounded" style="background-image:url(<%=me.profilePicture%>)"></div>
+      </div>
+    </div>
+    <%}%>
+    <div class="row">
+      <div class="col-3">Nombre completo:</div>
+      <div class="col"><strong>{{me.fullName}}</strong></div>
+    </div>
+    <div class="row">
+      <div class="col-3">Perfil:</div>
+      <div class="col"><strong>{{me.perfil.descripcion}}</strong></div>
+    </div>
+    <div class="row">
+      <div class="col-3">Correo electrónico:</div>
+      <div class="col">
+        <strong ng-class="{'text-muted' : me.emailStatus === 'unconfirmed' || me.emailStatus === 'changeRequested'}">{{me.emailChangeCandidate ? me.emailChangeCandidate : me.emailAddress}}</strong>
+        <span ng-if="me.emailStatus === 'unconfirmed' || me.emailStatus === 'changeRequested'" class="badge badge-pill badge-warning">Sin verificar</span>
+        <span ng-if="me.emailStatus === 'confirmed'" class="badge badge-pill badge-success">Verificado</span>
+      </div>
+    </div>
+    <% if(me.celular){%>
+
+    <div class="row">
+      <div class="col-3">Celular:</div>
+      <div class="col-3">
+        <strong>{{me.celular}}</strong>
+        <span ng-if="me.celularValidado === 'confirmed'" class="badge badge-pill badge-success">Verificado</span>
+      </div>
+    </div>
+    <%}%>
+    <hr/>
+    <div class="row">
+      <div class="col-3">Contraseña:</div>
+      <div class="col-3"><strong>••••••••••</strong></div>
+      <div class="col">
+        <span class="float-sm-right">
+          <a class="btn btn-sm btn-outline-info account-settings-button" href="/account/password">Cambiar contraseña</a>
+        </span>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-3">Autenticación Multifactor:</div>
+      <div class="col-3">
+        {{me.mfa.enrolled?'Si':'No'}}
+      </div>
+      <div class="col">
+        <span class="float-sm-right">
+          <a class="btn btn-sm btn-outline-info account-settings-button" href="/account/multifactor">Configuración</a>
+        </span>
+      </div>
+    </div>
+  </div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

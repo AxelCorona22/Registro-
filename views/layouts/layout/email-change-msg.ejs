@@ -1,0 +1,16 @@
+<% if(me&&me.emailChangeCandidate) { %>
+<div class="container">
+  <div class="alert alert-secondary mt-2" role="alert">
+    El correo electrónico que cambió necesita ser verificado. <br>Es posible que su cuenta tenga acceso limitado hasta que sea verificada mediante el correo electrónico que se envió a <strong>
+      <%= me.emailChangeCandidate %></strong>, mientras tanto debe iniciar sesión con <strong>
+      <%= me.emailAddress %></strong>.
+  </div>
+</div>
+<% } else if(me&&me.emailStatus === 'unconfirmed') { %>
+<div class="container">
+  <div class="alert alert-secondary mt-2" role="alert">
+    Su correo electrónico necesita ser verificado.<br> Es posible que su cuenta tenga acceso limitado hasta que sea verificada mediante el correo electrónico que se envió a <strong>
+      <%= me.emailChangeCandidate ? me.emailChangeCandidate : me.emailAddress%></strong>.
+  </div>
+</div>
+<% } %>

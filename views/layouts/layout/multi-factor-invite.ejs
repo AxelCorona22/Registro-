@@ -1,0 +1,9 @@
+<% if(invitarMultiFactor && me && url !='/account/multifactor' && (!me.mfa || !me.mfa.enrolled)) { %>
+<div class="container">
+  <div class="alert alert-info mt-2" role="alert">
+    <p><i class="fa fa-lock"></i>
+      Su cuenta no tiene activada la seguridad que brinda la autenticación multifactor, es recomendable que la active, puede hacerlo dando click <a href="/account/multifactor">aqui</a>.
+    </p>
+  </div>
+</div>
+<% } %>

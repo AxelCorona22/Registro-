@@ -1,0 +1,74 @@
+#para ejecutarse en un runner tipo shell
+
+stages: #Orden de ejecucion de las tareas
+  - validacion-estilos
+  - validacion-html  #nombre de la etapa a ajecutar,
+  - validacion-js
+#  - test-coverage
+  - deploy         # y en el orden declaradas
+
+#Tareas
+#como estas 2 tareas que siguen no tienen "only", se ejecutan en TODOS los branches
+templates: #nombre de tarea
+  stage: validacion-html #etapa a la que pertenece
+  tags: #runner
+    - codecheck
+  script: #ejecutar....
+    - htmlhint assets/templates/*.html assets/templates/*/*.html assets/templates/*/*/*.html assets/templates/*/*/*/*.html assets/templates/*/*/*/*/*.html -f compact
+
+views: #nombre de tarea
+  stage: validacion-html #etapa a la que pertenece
+  tags: #runner
+    - codecheck
+  script: #ejecutar....
+    - htmlhint views/*.ejs views/*/*.ejs views/*/*/*.ejs views/*/*/*/*.ejs views/*/*/*/*/*.ejs views/*/*/*/*/*/*.ejs -f compact
+
+css-less:
+  stage: validacion-estilos
+  tags:
+    - codecheck
+  script:
+    - stylelint assets/styles/**/*.less assets/styles/**/*.css
+
+eslint: #nombre de tarea
+  stage: validacion-js #etapa a la que pertenece
+  tags: #runner
+    - codecheck
+  script: #ejecutar....
+    - eslint assets/js api config tasks --max-warnings 0
+
+#mocha:
+#  stage: test-coverage
+#  tags:
+#    - codecheck
+#  script:
+#    - npm install
+#    - npm run mocha
+
+#esta tarea se ejecuta solo en el branch testing y ejecuta
+#una tarea de shell que implementa el sistema en un lugar previamente
+#instalado manualmente, ya que debe existir el proceso pm2
+#se podria hacer mas inteligente para que si el proceso no existe lo cree y esto
+#lo automatizaria al 100% nadamas habria que definir la ruta base
+#abre deploy_testing.sh para que veas de que estoy hablando.
+testing-deploy:
+  stage: deploy
+  tags:
+    - pruebas #tag de los runners que ejecutan esta tarea
+  only:
+    - testing #branch donde se ejecuta esta tarea
+  environment:
+    name: testing #environment donde hacer deploy
+  script:
+    - bash start-deploy.sh
+
+master-deploy:
+  stage: deploy
+  tags:
+    - produccion #tag de los runners que ejecutan esta tarea
+  only:
+    - master #branch donde se ejecuta esta tarea
+  environment:
+    name: master #environment donde hacer deploy
+  script:
+    - bash start-deploy.sh

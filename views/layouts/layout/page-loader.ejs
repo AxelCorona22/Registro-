@@ -1,0 +1,31 @@
+<!--<%/* Mostrar esta parte pasando app.loaderMsg o app.showLoader a truthy */%>-->
+<div class="siempre-enfrente loader-back text-center" ng-show="app.loaderMsg || app.showLoader" ng-cloak>
+  <p ng-if="app.loaderMsg">
+    {{app.loaderMsg}}
+  </p>
+</div>
+
+<div class="ng-cloak siempre-enfrente loader-back text-center" ng-show="!app.conectado" ng-cloak>
+  <div class="mensaje-loader">
+    <div ng-show="app.conectando">
+      <i class="fa fa-spinner fa-spin fa-3x"></i><br>
+      Sin conexión, el sistema está reiniciando.
+      <hr>
+      <div class="" ng-show="app.instalando && !app.error">
+        Se está instalando una nueva versión de la aplicación, por favor espere.
+      </div>
+      <div class="" ng-show="app.conectando">
+        <hr>
+        Conectando...({{app.intentos}})
+      </div>
+      <div ng-show="app.error==='conexion'">
+        Está conectado a internet?
+      </div>
+    </div>
+    <div class="" ng-show="!app.conectando">
+      No se pudo establecer una conexión con el servidor.
+      <hr>
+      <button type="button" class="btn-info btn-block btn-sm" ng-click="app.reconectar()">Intentar de nuevo</button>
+    </div>
+  </div>
+</div>

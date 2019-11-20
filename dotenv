@@ -1,0 +1,47 @@
+#dominio del cual se estará visualizando la pagina, necesario para plantillas
+#BASE_URL=https://erik.snell.com.mx
+BASE_URL=http://localhost:1337
+
+#contraseña inicial para las cuentas que se creen desde helpers.ensure-users
+PASSWORD_INICIAL=password
+#dominio a usar para las cuentas por default: super, admin, capturista, director
+ACCOUNTS_DOMAIN=dominio.com
+
+#secretos
+SESSION_SECRET=71d59d41-64b9-4817-929a-25e6f5b6f79f
+MOVIL_API_KEY=5dce6a5f-2eed-45a7-b3f9-7a49da3da1f8
+JWT_SECRET=c0025e2a-b4ae-443f-9486-640d96f77584
+JWT_EXPIRATION=8h
+
+ALLOWED_DOMAINS=http://localhost,http://localhost:1337
+
+#usar google analytics
+#GOOGLE_ANALYTICS_ID=G-X000000000
+
+#user-agent permitido en la policy para los controllers en movil
+MOVIL_USER_AGENT=App-1.0.0
+
+#puerto para iniciar
+APP_PORT=1337
+
+#crear usuarios iniciales del sistema con el dominio y password por default
+CREATE_USERS=true
+
+#importar datos de demostracion
+CREATE_DEMO_DATA=true
+
+#host de la base de datos donde reside la información de la etapa 1
+MSSQL_DB=cio
+#MSSQL_PORT=1433
+#MSSQL_HOST=localhost
+#MSSQL_USER=sa
+MSSQL_PASSWORD=password
+
+LOG_LEVEL=verbose
+NODE_ENV=development
+
+#host para redis, al usarlo, la aplicación se convierte en estateles.
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_DB=0
+REDIS_AUTH=thisisthefugginpassword

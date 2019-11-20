@@ -1,0 +1,78 @@
+{
+  "name": "cio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Control Integral de Obra",
+  "keywords": [],
+  "dependencies": {
+    "@sailshq/connect-redis": "^3.2.1",
+    "@sailshq/socket.io-redis": "^5.2.0",
+    "@sentry/node": "^5.6.1",
+    "@slack/web-api": "^5.1.0",
+    "async": "2.0.1",
+    "console-stamp": "^0.2.7",
+    "csvtojson": "^2.0.10",
+    "dotenv": "^6.2.0",
+    "forwarded-for": "^1.1.0",
+    "generate-password": "^1.4.2",
+    "grunt": "^1.0.4",
+    "grunt-javascript-obfuscator": "^1.1.0",
+    "html-pdf": "^2.2.0",
+    "javascript-obfuscator": "^0.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": ">=4.17.11",
+    "machinepack-mssql": "^1.0.0-rc.1.1",
+    "moment": "^2.24.0",
+    "nodemailer": "^5.1.1",
+    "qrcode": "^1.3.3",
+    "sails": "^1.2.3",
+    "sails-hook-apianalytics": "^2.0.0",
+    "sails-hook-grunt": "^3.1.1",
+    "sails-hook-organics": "^1.0.0",
+    "sails-hook-orm": "^2.0.0-16",
+    "sails-hook-sockets": "^1.4.0",
+    "sails-hook-uploads": "^0.4.1",
+    "sails-mssql": "^2.0.0",
+    "sails-redis": "^1.0.0",
+    "speakeasy": "^2.0.0",
+    "tempfile": "^3.0.0",
+    "uuidv4": "^5.0.1"
+  },
+  "devDependencies": {
+    "@sailshq/eslint": "^4.19.3",
+    "@sailshq/htmlhint": "^0.9.16",
+    "chai": "^4.2.0",
+    "grunt-sync": "0.8.0",
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1",
+    "postcss": "^7.0.21",
+    "postcss-less": "^3.1.4",
+    "sails-generate-angularjs": "^1.0.0",
+    "stylelint": "^11.1.1",
+    "supertest": "^4.0.2",
+    "supertest-session": "^4.0.0"
+  },
+  "scripts": {
+    "start": "npm run test && npm run build && NODE_ENV=production node app.js",
+    "dev": "NODE_ENV=development node app.js",
+    "build": "NODE_ENV=production grunt buld",
+    "test": "npm run --silent lint && npm run --silent mocha && echo 'Done.'",
+    "mocha": "nyc --reporter=text-summary mocha test/lifecycle.test.js test/main.test.js",
+    "lint": "eslint assets/js api config tasks --max-warnings 0 && echo '✔  Los archivos .js files parecen estar bien.' && htmlhint -c .htmlhintrc views/*.ejs views/*/*.ejs views/*/*/*.ejs views/*/*/*/*.ejs views/*/*/*/*/*.ejs views/*/*/*/*/*/*.ejs -f compact && echo '✔  también los archivos .ejs' && htmlhint -c .htmlhintrc assets/templates/*.html assets/templates/*/*.html assets/templates/*/*/*.html assets/templates/*/*/*/*.html assets/templates/*/*/*/*/*.html -f compact && echo '✔  También las plantillas .html' && stylelint assets/styles/**/*.less assets/styles/**/*.css && echo '✔  Los archivos .less y .css también parecen estar bien.'"
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://git.snell.com.mx/cio/control-integral-de-obra"
+  },
+  "author": "@Snell Dev Team",
+  "contributors": [
+    "Erik Ernesto Corona Vásquez <ecorona@snell.com.mx>",
+    "Esteban Sánchez Villegas <esteban.villegas@snell.com.mx>"
+  ],
+  "license": "Copyright © Snell Comunicación Digital S.A. de C.V.",
+  "os": [
+    "linux",
+    "win32"
+  ]
+}

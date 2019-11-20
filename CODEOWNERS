@@ -1,0 +1,14 @@
+* @cio
+
+CODEOWNERS ecorona@snell.com.mx esteban.villegas@snell.com.mx
+AUTHORS ecorona@snell.com.mx esteban.villegas@snell.com.mx
+LICENSE ecorona@snell.com.mx
+README ecorona@snell.com.mx
+
+/api/controllers/moivl ecorona@snell.com.mx
+/api/controllers/proyectos esteban.villegas@snell.com.mx
+/tasks/ ecorona@snell.com.mx
+/nginx/ ecorona@snell.com.mx
+/config/ ecorona@snell.com.mx
+
+/database/ ecorona@snell.com.mx esteban.villegas@snell.com.mx

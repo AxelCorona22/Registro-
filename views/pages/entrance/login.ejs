@@ -1,0 +1,63 @@
+<div id="login" ng-controller="loginController" ng-cloak class="ng-cloak">
+  <titulo-pagina>
+    <i class="fas fa-unlock-alt" aria-hidden></i> Acceso
+  </titulo-pagina>
+  <div class="container">
+    <div class="login-form-container">
+      <form class="form-signin" ng-submit="trySubmit()">
+        <img class="mb-5 mx-auto" src="/images/taxi.jpg" alt="" width="60%" >
+        <h1 class="h3 mb-3 font-weight-normal">Credenciales</h1>
+        <label for="inputEmail" class="sr-only">Email</label>
+        <input type="email" class="form-control form-control-sm" placeholder="Correo Electrónico" ng-class="{'is-invalid' : formErrors.emailAddress}" ng-model="formData.emailAddress" autocomplete="email" autofocus>
+        <label for="inputPassword" class="sr-only">Contraseña</label>
+        <input type="password" class="form-control form-control-sm" placeholder="Contraseña" :class="{'is-invalid' : formErrors.password}" ng-model="formData.password" autocomplete="current-password" required>
+        <div class="checkbox mb-2">
+          <label>
+            <input type="checkbox" value="remember-me" ng-model="formData.rememberMe"> Recuérdame
+          </label>
+        </div>
+        <p class="text-danger" ng-if="cloudError==='badCombo'">
+          <small>
+            Usuario y/o contraseña no válidos.
+          </small>
+        </p>
+        <p class="text-danger" ng-if="cloudError==='unconfirmed'">
+          <small>
+            Su cuenta no ha sido verificada, debe validar su email primero.
+          </small>
+        </p>
+        <p class="text-danger" ng-if="cloudError==='disabled'">
+          <small>
+            Su cuenta está desactivada.
+          </small>
+        </p>
+        <p class="text-danger" ng-if="cloudError==='mainDisabled'">
+          <small>
+            La cuenta de su empresa está desactivada.
+          </small>
+        </p>
+        <p class="text-danger" ng-if="cloudError==='unauthorized'">
+          <small>
+            Su cuenta no ha sido autorizada.
+          </small>
+        </p>
+        <p class="text-danger" ng-if="cloudError==='movilOnly'">
+          <small>
+            Esta cuenta es solo móvil.
+          </small>
+        </p>
+        <p class="text-danger" ng-if="cloudError && cloudError!=='mainDisabled' && cloudError!=='movilOnly' && cloudError!=='unauthorized' && cloudError!=='unconfirmed' && cloudError!=='disabled' && cloudError!=='badCombo'">
+          <small>
+            Ocurrió un error, inténtelo mas tarde. ({{cloudError}})
+          </small>
+        </p>
+        <button class="btn btn-sm btn-dark btn-block" type="submit" ng-disabled="syncing">
+          <i ng-if="syncing" class="fa fa-spinner fa-spin" aria-hidden></i>
+          <span ng-if="!syncing"><i class="fa fa-sign-in" aria-hidden></i> Iniciar Sesión</span>
+        </button>
+        <div class="mt-2 mb-3 text-muted text-center small"><a href="/password/forgot">¿Olvidó su Contraseña?</a></div>
+      </form>
+    </div>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
