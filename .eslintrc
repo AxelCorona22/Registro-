@@ -34,6 +34,7 @@
     // are used in this app's backend code (including the globalIds of models):
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     "Proyectos": true,
+    "Alumnos": true,
     "Conceptos": true,
     "Insumosprototipo": true,
     "Prototipos": true,

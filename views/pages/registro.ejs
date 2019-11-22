@@ -1,0 +1,43 @@
+<div id="registro" ng-controller="registroController" class="ng-cloak" ng-init="init()" ng-cloak>
+
+  <div class="container">
+    <titulo-pagina>Registro</titulo-pagina>
+    <div class="row mt-5">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <form ng-submit="agregarUsuario()" name="formulario" ng-if="!registro.id">
+          <fieldset>
+            <label for="">Nickname</label>
+            <input type="text" class="form-control" name="apodo" placeholder="Apodo" required ng-model="registro.nick">
+          </fieldset>
+          <fieldset>
+            <label for="">Nombre Completo</label>
+            <input type="text" class="form-control" name="nombre" placeholder="Nombre" required ng-model="registro.fullName">
+            <span ng-show="formulario.nombre.$invalid">Este campo es requerido</span>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="">Email</label>
+            <input type="email" class="form-control" name="emailAddress" placeholder="Email" required ng-model="registro.emailAddress">
+          </fieldset>
+          <fieldset>
+            <label for="">Número Telefónico</label>
+            <input type="text" class="form-control" placeholder="Teléfono" ng-model="registro.celular">
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="">Contraseña</label>
+            <input type="password" class="form-control" name="password" ng-min="8" placeholder="Password" required ng-model="registro.password">
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="">Repetir Contraseña</label>
+            <input type="password" class="form-control" placeholder="Repetir Password" ng-min="8" required ng-model="registro.password2">
+          </fieldset>
+          <button type="submit" ng-disabled="formulario.$invalid" class="btn btn-primary">Registrar</button>
+        </form>
+        <pre ng-if="registro.id">{{registro|json}}</pre>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+</div>
+
+<%- /* Exponer datos de variables del servidor como window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

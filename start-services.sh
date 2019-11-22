@@ -29,12 +29,12 @@ MSSQL_PORT=$(read_var MSSQL_PORT .env)
 
 #iniciar servicios
 echo "Iniciando instancia de REDIS..."
-#docker run -p 6379:6379 -v $PWD/redis:/data -d --name redis --rm redis:4-alpine --appendonly yes --requirepass $REDIS_AUTH
-REDIS_HOST=`docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" redis`
+docker run -p 6379:6379 -v $PWD/redis:/data -d --name redis --rm redis:4-alpine --appendonly yes --requirepass $REDIS_AUTH
+#REDIS_HOST=`docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" redis`
 echo "REDIS_HOST=$REDIS_HOST"
 
 echo "Iniciando instancia de MSSQL..."
-#docker run -e 'ACCEPT_EULA=Y' -e SA_PASSWORD=$MSSQL_PASSWORD -e 'MSSQL_PID=Express' -p $MSSQL_PORT:$MSSQL_PORT -v $PWD/mssql:/var/opt/mssql -d --name mssql --rm  mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+docker run -e 'ACCEPT_EULA=Y' -e SA_PASSWORD=$MSSQL_PASSWORD -e 'MSSQL_PID=Express' -p $MSSQL_PORT:$MSSQL_PORT -v $PWD/mssql:/var/opt/mssql -d --name mssql --rm  mcr.microsoft.com/mssql/server:2017-latest-ubuntu
 echo "MSSQL_USER: ${MSSQL_USER}"
 echo "MSSQL_PASSWORD: ${MSSQL_PASSWORD}"
 MSSQL_HOST=`docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" mssql`

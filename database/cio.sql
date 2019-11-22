@@ -1,4 +1,19 @@
+IF OBJECT_ID('alumnos', 'U') IS NOT NULL
+DROP TABLE alumnos
+--GO
+CREATE TABLE alumnos
+(
+    [id] INT IDENTITY(1,1) PRIMARY KEY,
 
+    [emailAddress] NVARCHAR(100) NOT NULL,--#TODOs:agregar indice unico
+    [password] NVARCHAR(100) NOT NULL,
+    [nick] NVARCHAR(30) NOT NULL,
+    [fullName] NVARCHAR(150) NOT NULL,
+    [celular] NVARCHAR(10) NULL,
+
+    [updatedAt] DATETIME NULL DEFAULT NULL,
+    [createdAt] DATETIME DEFAULT CURRENT_TIMESTAMP,
+);
 
 
 -- ██    ██ ███████ ██    ██  █████  ██████  ██  ██████  ███████

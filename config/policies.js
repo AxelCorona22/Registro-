@@ -18,6 +18,8 @@ module.exports.policies = {
   ],
 
   'entrance/*': true,
+  'view-registro': true,
+  'alumnos/guardar': true,
   'view-nosotros': true,
   'view-contacto': true,
   'view-privacidad': true,

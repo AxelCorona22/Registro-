@@ -212,5 +212,18 @@ module.exports.routes = {
   'POST /api/v1/account/accept-tos': {
     action: 'account/accept-tos',
     csrf: false
+  },
+  /*
+  ██████  ███████  ██████  ██ ███████ ████████ ██████   ██████
+  ██   ██ ██      ██       ██ ██         ██    ██   ██ ██    ██
+  ██████  █████   ██   ███ ██ ███████    ██    ██████  ██    ██
+  ██   ██ ██      ██    ██ ██      ██    ██    ██   ██ ██    ██
+  ██   ██ ███████  ██████  ██ ███████    ██    ██   ██  ██████
+  */
+  'GET /registro': {
+    action: 'view-registro'
+  },
+  'POST /api/v1/alumnos': {
+    action: 'alumnos/guardar'
   }
 };
