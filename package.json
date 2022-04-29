@@ -9,7 +9,7 @@
     "@sailshq/socket.io-redis": "^5.2.0",
     "@sentry/node": "^5.6.1",
     "@slack/web-api": "^5.1.0",
-    "async": "2.0.1",
+    "async": "2.6.4",
     "console-stamp": "^0.2.7",
     "csvtojson": "^2.0.10",
     "dotenv": "^6.2.0",
